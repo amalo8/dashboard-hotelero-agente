@@ -29,7 +29,7 @@ def cargar_datos():
     df_info = pd.read_csv('datos/procesados/df_hoteles_vlc_info.csv', encoding='utf-8-sig')
     df_comentarios = pd.read_csv('datos/procesados/df_comentarios_final_topics.csv', encoding='utf-8-sig')
     # Se corrige el return para incluir el df_temporales
-    df_comentarios_con_indices_temporales = pd.read_csv('datos/procesados/df_comentarios_con_indices_temporales.csv', encoding='utf-8-sig')
+    df_comentarios_con_indices_temporales = pd.read_csv('datos/procesados/df_comentarios_con_indices_temporales.csv', encoding='latin-1')
     return df_info, df_comentarios, df_comentarios_con_indices_temporales
 
 df_info, df_comentarios, df_temporales = cargar_datos()
