@@ -65,42 +65,45 @@ section[data-testid="stMain"]         { padding-top: 0 !important; }
 
 /* Las tabs NATIVAS de Streamlit estilizadas para vivir en la franja */
 [data-testid="stTabs"] {
+    width: calc(100% + 8rem) !important; /* Compensa el padding del contenedor de Streamlit */
     margin-left: -4rem;
     margin-right: -4rem;
     padding-left: 40px;
     padding-right: 40px;
-    background: #ffffff !important; /* CAMBIO: Fondo de viñetas en blanco */
-    border-bottom: 4px solid #c9a84c;
+    background: #faf9f7 !important; /* CAMBIO: Fondo de viñetas en color crema, igual que el fondo */
+    /*border-bottom: 4px solid #c9a84c;*/ 
 }
 
 [data-testid="stTabs"] [role="tablist"] {
     background: transparent !important;
     border-bottom: none !important;
-    gap: 0 !important;
+    gap: 0 !important;* CAMBIO CLAVE: Hace que cada pestaña crezca por igual para rellenar el espacio */
+    flex-grow: 1 !important;
+    text-align: center !important;
 }
 
 [data-testid="stTabs"] [role="tab"] {
     font-family: 'DM Sans', sans-serif !important;
     font-size: 0.85rem !important;
     font-weight: 500 !important;
-    color: #555555 !important; /* CAMBIO: Color gris oscuro para verse en el fondo blanco */
+    color: #555555 !important; /* CAMBIO: Color gris oscuro para verse en el fondo crema */
     padding: 9px 28px !important;
     background: transparent !important;
     border: none !important;
-    border-bottom: 3px solid transparent !important;
+    /*border-bottom: 3px solid transparent !important;*/
     border-radius: 0 !important;
     transition: all 0.15s ease !important;
 }
 
 [data-testid="stTabs"] [role="tab"]:hover {
     color: #1a3350 !important; /* Hover azul oscuro */
-    border-bottom-color: rgba(201,168,76,0.35) !important;
+    /*border-bottom-color: rgba(201,168,76,0.35) !important;*/
 }
 
 [data-testid="stTabs"] [role="tab"][aria-selected="true"] {
     color: #1a3350 !important; /* Texto azul oscuro al seleccionar */
     font-weight: 600 !important;
-    border-bottom: 3px solid #c9a84c !important;
+    /*border-bottom: 3px solid #c9a84c !important;*/
     background: transparent !important;
 }
 
@@ -117,7 +120,7 @@ section[data-testid="stMain"]         { padding-top: 0 !important; }
 [data-testid="stSelectbox"] > div > div {
     border: 1px solid #d1d5db !important;
     border-radius: 6px !important;
-    background-color: #ffffff !important;
+    background-color: #faf9f7 !important;
     max-width: 440px;
 }
 [data-testid="stSelectbox"] label { display: none !important; }
@@ -247,7 +250,8 @@ with tab1:
             ))
             fig.update_layout(
                 polar=dict(radialaxis=dict(visible=True, range=[8, 10], dtick=0.5)),
-                showlegend=True, margin=dict(l=40, r=40, t=20, b=20)
+                showlegend=True, margin=dict(l=20, r=20, t=20, b=20),
+                height=400
             )
             st.plotly_chart(fig, use_container_width=True)
 
