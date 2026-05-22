@@ -146,14 +146,21 @@ hr { border-color: #e8e4dc !important; }
 # ==========================================
 # CARGA DE DATOS
 # ==========================================
-@st.cache_data
+import gc 
+
+@st.cache_data(max_entries=1)
 def cargar_datos():
-    df_info = pd.read_csv('datos/procesados/df_hoteles_vlc_info.csv', encoding='utf-8-sig')
-    df_comentarios = pd.read_csv('datos/procesados/df_comentarios_final_topics.csv', encoding='utf-8-sig')
-    df_comentarios_con_indices_temporales = pd.read_csv('datos/procesados/df_comentarios_con_indices_temporales.csv', encoding='utf-8-sig')
+    dtypes_optimizados = {
+        'nombre_del_hotel': 'category'
+    }
+    df_info = pd.read_csv('datos/procesados/df_hoteles_vlc_info.csv', encoding='utf-8-sig', dtype=dtypes_optimizados)
+    df_comentarios = pd.read_csv('datos/procesados/df_comentarios_final_topics.csv', encoding='utf-8-sig', dtype=dtypes_optimizados)
+    df_comentarios_con_indices_temporales = pd.read_csv('datos/procesados/df_comentarios_con_indices_temporales.csv', encoding='utf-8-sig', dtype=dtypes_optimizados)
     return df_info, df_comentarios, df_comentarios_con_indices_temporales
 
 df_info, df_comentarios, df_temporales = cargar_datos()
+gc.collect() # Limpiamos memoria
+
 lista_hoteles = df_info['nombre_del_hotel'].unique()
 
 # ==========================================
