@@ -159,8 +159,8 @@ lista_hoteles = df_info['nombre_del_hotel'].unique()
 st.markdown("""
 <div class="header-band">
     <div class="header-top-row">
-        <span class="header-title">Cuadro de Mandos de Calidad Hotelera</span>
-        <span class="header-subtitle">Analizador de sentimiento y topicos con arquitectura LangChain</span>
+        <span class="header-title">Cuadro de mandos para la revisión de reseñas hoteleras</span>
+        <span class="header-subtitle">Analizador de sentimiento y topics con arquitectura LangChain</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -173,7 +173,7 @@ hotel_seleccionado = st.selectbox("Hotel", lista_hoteles, label_visibility="coll
 # ==========================================
 # TABS NATIVAS / VIÑETAS (fondo blanco)
 # ==========================================
-tab1, tab2 = st.tabs(["Analisis de Puntuaciones", "Consultor IA LangChain"])
+tab1, tab2 = st.tabs(["Análisis de puntuaciones", "Consultor IA LangChain"])
 
 # ==========================================
 # FILTRADO
@@ -271,13 +271,13 @@ with tab1:
         with sub1:
             st.markdown(f'<div class="bloque b3"><div class="titulo-bloque">Reseñas con comentarios positivos</div><div class="valor-bloque">{porc_pos}%</div></div>', unsafe_allow_html=True)
         with sub2:
-            st.markdown(f'<div class="bloque b4"><div class="titulo-bloque">Reseñas con comentarios negativas</div><div class="valor-bloque">{porc_neg}%</div></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="bloque b4"><div class="titulo-bloque">Reseñas con comentarios negativos</div><div class="valor-bloque">{porc_neg}%</div></div>', unsafe_allow_html=True)
 
 # ------------------------------------------
 # PESTAÑA 2: EL AGENTE LANGCHAIN
 # ------------------------------------------
 with tab2:
-    st.subheader(f"Consultor Estrategico IA: {hotel_seleccionado}")
+    st.subheader(f"Consultor de estrategias para {hotel_seleccionado}")
 
     @tool
     def comparar_con_media_competencia():
@@ -359,10 +359,10 @@ with tab2:
     col_btn_1, col_btn_2 = st.columns(2)
 
     with col_btn_1:
-        boton_competitivo = st.button("Analisis Competitivo", use_container_width=True)
+        boton_competitivo = st.button("Análisis competitivo", use_container_width=True)
 
     if boton_competitivo:
-        with st.spinner('Analizando posicion frente a la competencia...'):
+        with st.spinner('Analizando posición frente a la competencia...'):
             exito = False
             for m in modelos_prueba:
                 try:
@@ -381,6 +381,9 @@ with tab2:
                             - NO te limites a decir "somos líderes".
                             - Destaca las fortalezas analizando el patrón de los comentarios positivos.
                             - Explica técnicamente POR QUÉ estamos por encima (ej: "La ubicación supera la media gracias a la cercanía con X, consolidando un nicho de mercado de negocios").
+                            4. NO hables sobre los resultados internos de tus funciones:
+                            - si comparar_media_competencia devuelve "NINGUNA_DEBAJO_MEDIA" no lo digas explícitamente, redacta que el hotel tiene un rendimiento sólido y destaca las fortalezas.
+
                             
                             PROHIBIDO: 
                             - Hablar de tus herramientas o pasos internos.
@@ -417,8 +420,8 @@ with tab2:
                         ("system", f"""Eres un Auditor de Calidad enfocado EXCLUSIVAMENTE en el presente del {hotel_seleccionado}.
                         
                         PROCESO OBLIGATORIO:
-                        1. Usa 'analizar_indices_ponderados_temporales' para obtener las mejores y peores categorías (analiza de 1 a 3 por cada lado).
-                        2. Usa 'extraer_citas_textuales_recientes' para obtener una cita literal por categoría.
+                        1. Usa 'analizar_indices_ponderados_temporales' para obtener las mejores y peores categorías (analiza de 1 a 3 por cada lado, es mejor que no llegues a 3, pon 3 SOLO si estan muy a la par las 3 en las puntuaciones, es decir ninguna destaca sobre las otras).
+                        2. Usa 'extraer_citas_textuales_recientes' para obtener una cita literal por categoría
                          
                         REGLA DE PRIORIZACIÓN: 
                         No estás obligado a extraer 3 categorías. Analiza los datos y extrae SOLAMENTE las que sean verdaderamente relevantes (pueden ser 1, 2 o hasta 3). Si una categoría no tiene impacto significativo, no la incluyas.
@@ -486,13 +489,13 @@ with tab2:
                         debiles_data = parsear_bloque(partes[1].replace("DEBILES", ""))
                         col_fuertes, col_debiles = st.columns(2)
                         with col_fuertes:
-                            html_fuertes = '<div class="col-fuerte"><div class="titulo-fuerte">Puntos Fuertes Recientes</div>'
+                            html_fuertes = '<div class="col-fuerte"><div class="titulo-fuerte">Puntos fuertes recientes</div>'
                             for item in fuertes_data:
                                 html_fuertes += f'<div><div class="cat-fuerte">{item["cat"]}</div><div class="texto-resumen">{item["res"]}</div><div class="caja-cita">{item["cit"]}</div></div>'
                             html_fuertes += '</div>'
                             st.markdown(html_fuertes, unsafe_allow_html=True)
                         with col_debiles:
-                            html_debiles = '<div class="col-debil"><div class="titulo-debil">Puntos Débiles Recientes</div>'
+                            html_debiles = '<div class="col-debil"><div class="titulo-debil">Puntos débiles recientes</div>'
                             for item in debiles_data:
                                 html_debiles += f'<div><div class="cat-debil">{item["cat"]}</div><div class="texto-resumen">{item["res"]}</div><div class="caja-cita">{item["cit"]}</div></div>'
                             html_debiles += '</div>'
