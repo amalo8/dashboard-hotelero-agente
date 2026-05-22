@@ -418,7 +418,7 @@ with tab2:
                 st.error("Servidores de IA saturados. Reintenta en unos segundos.")
 
     with col_btn_2:
-        boton_actual = st.button("Analisis actual", use_container_width=True)
+        boton_actual = st.button("Análisis actual", use_container_width=True)
 
     if boton_actual:
         with st.spinner('Evaluando tendencias y construyendo informe visual...'):
