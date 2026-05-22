@@ -170,7 +170,7 @@ st.markdown("""
 <div class="header-band">
     <div class="header-top-row">
         <span class="header-title">Cuadro de mandos para la revisión de reseñas hoteleras</span>
-        <span class="header-subtitle">Analizador de sentimiento y topics con arquitectura LangChain</span>
+        <span class="header-subtitle">Analizador de sentimiento, extracción de tópicos y diagnóstico competitivo mediante IA</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -183,7 +183,7 @@ hotel_seleccionado = st.selectbox("Hotel", lista_hoteles, label_visibility="coll
 # ==========================================
 # TABS NATIVAS / VIÑETAS (fondo blanco)
 # ==========================================
-tab1, tab2 = st.tabs(["Análisis de puntuaciones", "Consultor IA LangChain"])
+tab1, tab2 = st.tabs(["Análisis de puntuaciones", "Consultor de estrategias"])
 
 # ==========================================
 # FILTRADO
@@ -418,7 +418,7 @@ with tab2:
                 st.error("Servidores de IA saturados. Reintenta en unos segundos.")
 
     with col_btn_2:
-        boton_actual = st.button("Analisis Actual (Ponderado)", use_container_width=True)
+        boton_actual = st.button("Analisis Temporal Actual", use_container_width=True)
 
     if boton_actual:
         with st.spinner('Evaluando tendencias y construyendo informe visual...'):
