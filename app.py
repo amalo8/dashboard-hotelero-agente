@@ -312,12 +312,12 @@ with tab2:
         return peor_categoria
 
     @tool
-    def extraer_resenas_categoria(categoria: str):
+    def extraer_resenas_categoria(categoria: str, tipo_resena: str):
         """
         Devuelve SOLAMENTE las reseñas negativas asociadas a esa categoría concreta 
         para el hotel seleccionado.
         """
-        return _obtener_evidencia_real(categoria, "negativo")
+        return _obtener_evidencia_real(categoria, tipo_resena)
 
     @tool
     def destacar_puntos_fuertes():
@@ -364,7 +364,10 @@ with tab2:
     modelos_prueba = [
         "nvidia/nemotron-3-super-120b-a12b:free",
         "meta-llama/llama-3-8b-instruct:free",
-        "google/gemma-2-9b-it:free"
+        "google/gemma-2-9b-it:free",
+        "mistralai/mistral-7b-instruct:free",
+        "microsoft/phi-3-mini-128k-instruct:free",
+        "qwen/qwen-2-7b-instruct:free"
     ]
 
     col_btn_1, col_btn_2 = st.columns(2)
@@ -387,7 +390,7 @@ with tab2:
                             2. Si el hotel está por debajo de la media en alguna categoría:
                             - Identifícalas claramente.
                             - Crea una tabla con: | Categoria | Estado | Reseña ilustrativa |
-                            - Proporciona una guía de acciones correctoras coherentes con el problema.
+                            - Proporciona una guía breve de acciones correctoras coherentes con el problema.
                             3. Si el hotel es líder en todo:
                             - NO te limites a decir "somos líderes".
                             - Destaca las fortalezas analizando el patrón de los comentarios positivos.
