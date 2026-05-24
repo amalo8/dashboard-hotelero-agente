@@ -217,7 +217,7 @@ def _obtener_evidencia_real(categoria, tipo):
     if muestras.empty:
         return f"No se han encontrado quejas o alabanzas específicas sobre {categoria}."
     ejemplos = muestras[col_texto].head(6).tolist()
-    return "\n".join([f"- {txt}" for txt in ejemplos])
+    return "\n".join([f"{txt}" for txt in ejemplos])
 
 # ------------------------------------------
 # PESTAÑA 1: DASHBOARD VISUAL
@@ -256,7 +256,7 @@ with tab1:
                 line=dict(color='#1f77b4', width=3), marker=dict(size=8), name=hotel_seleccionado
             ))
             fig.update_layout(
-                polar=dict(radialaxis=dict(visible=True, range=[8, 10], dtick=0.5)),
+                polar=dict(radialaxis=dict(visible=True, range=[min(min(punt_hotel), min(med_globales)), 10], dtick=0.5)),
                 showlegend=True, margin=dict(l=20, r=20, t=20, b=20),
                 height=400
             )
@@ -387,16 +387,17 @@ with tab2:
 
                             REGLAS DE ORO:
                             1. Cita textualmente. NO edites, NO resumas ni cambies el tono de las reseñas originales. Si tienen errores, los mantienes.
-                            2. Si el hotel está por debajo de la media en alguna categoría:
-                            - Identifícalas claramente.
-                            - Crea una tabla con: | Categoria | Estado | Reseña ilustrativa |
+                            2. Si el hotel no alcanza la media del sector:
+                            - Inicia el informe resumiendo brevemente cual es la categoría que más dista de alcanzar la media del sector e infiere brevemente por qué.
+                            - Crea una tabla con las reseñas que avalen esa debilidad |Reseñas ilustrativas|.
                             - Proporciona una guía breve de acciones correctoras coherentes con el problema.
                             3. Si el hotel es líder en todo:
                             - NO te limites a decir "somos líderes".
                             - Destaca las fortalezas analizando el patrón de los comentarios positivos.
-                            - Explica técnicamente POR QUÉ estamos por encima (ej: "La ubicación supera la media gracias a la cercanía con X, consolidando un nicho de mercado de negocios").
+                            - Explica breve y técnicamente POR QUÉ estamos por encima usando reseñas para ilustrarlo.
                             4. NO hables sobre los resultados internos de tus funciones:
-                            - si comparar_media_competencia devuelve "NINGUNA_DEBAJO_MEDIA" no lo digas explícitamente, redacta que el hotel tiene un rendimiento sólido y destaca las fortalezas.
+                            - si comparar_media_competencia devuelve "NINGUNA_DEBAJO_MEDIA" NO LO DIGAS explícitamente, redacta que el hotel tiene un rendimiento sólido y destaca las fortalezas.
+                            - NO PONGAS (texto original) ni nada parecido, solo la cita literal limpia.
 
                             PROHIBIDO: 
                             - Hablar de tus herramientas o pasos internos.
