@@ -387,7 +387,7 @@ with tab2:
                             2. Si el hotel está por debajo de la media en alguna categoría:
                             - Identifícalas claramente.
                             - Crea una tabla con: | Categoria | Estado | Reseña ilustrativa |
-                            - Proporciona una guía de acciones correctoras con 4 o menos puntos estratégicos.
+                            - Proporciona una guía de acciones correctoras coherentes con el problema.
                             3. Si el hotel es líder en todo:
                             - NO te limites a decir "somos líderes".
                             - Destaca las fortalezas analizando el patrón de los comentarios positivos.
