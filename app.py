@@ -387,7 +387,7 @@ with tab2:
                             2. Si el hotel está por debajo de la media en alguna categoría:
                             - Identifícalas claramente.
                             - Crea una tabla con: | Categoria | Estado | Reseña ilustrativa |
-                            - Proporciona una guía de acciones correctoras (máximo 4 puntos estratégicos).
+                            - Proporciona una guía de acciones correctoras con 4 o menos puntos estratégicos.
                             3. Si el hotel es líder en todo:
                             - NO te limites a decir "somos líderes".
                             - Destaca las fortalezas analizando el patrón de los comentarios positivos.
@@ -395,7 +395,6 @@ with tab2:
                             4. NO hables sobre los resultados internos de tus funciones:
                             - si comparar_media_competencia devuelve "NINGUNA_DEBAJO_MEDIA" no lo digas explícitamente, redacta que el hotel tiene un rendimiento sólido y destaca las fortalezas.
 
-                            
                             PROHIBIDO: 
                             - Hablar de tus herramientas o pasos internos.
                             - Hacer listas kilométricas; ve directo a la estrategia y al dato.
@@ -451,11 +450,11 @@ with tab2:
                         CIT: [Cita literal limpia, sin comillas extra]
                         ===
                         CAT: [Nombre de la categoría 2 si la hay]
-                        RES: [Explicación...]
-                        CIT: [Cita...]
+                        RES: [Explicación directa del problema, sin usar la palabra "Resumen"]
+                        CIT: [Cita literal limpia, sin comillas extra]
                         |||
                         DEBILES
-                        CAT: [Nombre de la categoría A]
+                        CAT: [Nombre de la categoría 3 si la hay]
                         RES: [Explicación directa del problema, sin usar la palabra "Resumen"]
                         CIT: [Cita literal limpia, sin comillas extra]
                         ===
